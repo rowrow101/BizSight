@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#14243a">
+
+    <title>BizSight | Business Sales Analytics</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="login-container">
+    <div class="login-box">
+        <h1>Biz<span>Sight</span></h1>
+        <p>Business Sales Analytics System</p>
+
+        <form id="loginForm" autocomplete="off">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p id="loginError"></p>
+        </form>
+
+        <small>Demo: admin / admin123</small>
+    </div>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="mainApp" class="app hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>Biz<span>Sight</span></h2>
+
+        <nav>
+            <a href="#" class="active" onclick="showPage('dashboard',this); return false;">▦ Dashboard</a>
+            <a href="#" onclick="showPage('products',this); return false;">📦 Products</a>
+            <a href="#" onclick="showPage('sales',this); return false;">🛒 Record Sales</a>
+            <a href="#" onclick="showPage('history',this); return false;">📋 Sales History</a>
+            <a href="#" onclick="showPage('reports',this); return false;">📊 Reports</a>
+        </nav>
+
+        <button class="logout" onclick="logout()">Logout</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2 id="pageTitle">Dashboard</h2>
+                <p>Welcome to your business overview!</p>
+            </div>
+
+            <div class="profile">
+                <span>Administrator</span>
+                <div class="avatar">A</div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page">
+
+            <div class="cards">
+                <div class="stat-card">
+                    <p>Total Revenue</p>
+                    <h2 id="totalRevenue">₱0.00</h2>
+                    <span>Overall sales income</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Transactions</p>
+                    <h2 id="totalTransactions">0</h2>
+                    <span>Completed sales</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Average Transaction</p>
+                    <h2 id="averageTransaction">₱0.00</h2>
+                    <span>Average customer purchase</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Products</p>
+                    <h2 id="totalProducts">0</h2>
+                    <span>Available products</span>
+                </div>
+            </div>
+
+            <div class="filter-box">
+                <label>Sales Overview:</label>
+                <select id="salesPeriod" onchange="updateDashboard()">
+                    <option value="all">All Time</option>
+                    <option value="day">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+
+            <div class="chart-container">
+                <h3>Sales Trends</h3>
+                <div class="chart-area">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bottom-grid">
+                <div class="table-container">
+                    <h3>Best-Selling Products</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity Sold</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bestSellingTable"></tbody>
+                    </table>
+                </div>
+
+                <div class="table-container">
+                    <h3>Sales by Category</h3>
+                    <div class="chart-area">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section id="products" class="page hidden">
+            <div class="section-header">
+                <h3>Product Management</h3>
+                <button onclick="addProduct()">+ Add Product</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RECORD SALES -->
+        <section id="sales" class="page hidden">
+            <div class="form-container">
+                <h3>Record New Sale</h3>
+
+                <form id="salesForm">
+                    <label>Customer Name</label>
+                    <input type="text" id="customerName" placeholder="Enter customer name" required>
+
+                    <label>Select Product</label>
+                    <select id="saleProduct" required></select>
+
+                    <label>Quantity</label>
+                    <input type="number" id="saleQuantity" min="1" value="1" required>
+
+                    <label>Payment Method</label>
+                    <select id="paymentMethod">
+                        <option>Cash</option>
+                        <option>GCash</option>
+                        <option>Credit Card</option>
+                        <option>Bank Transfer</option>
+                    </select>
+
+                    <h3 id="saleTotal">Total: ₱0.00</h3>
+
+                    <button type="submit">Complete Sale</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SALES HISTORY -->
+        <section id="history" class="page hidden">
+            <h3>Sales Transaction History</h3>
+
+            <input type="text" id="searchSales"
+                   placeholder="Search customer or product..."
+                   oninput="renderHistory()">
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- REPORTS -->
+        <section id="reports" class="page hidden">
+            <h3>Revenue Reports</h3>
+
+            <div class="cards">
+                <div class="stat-card">
+                    <p>Today's Revenue</p>
+                    <h2 id="dailyRevenue">₱0.00</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>This Week</p>
+                    <h2 id="weeklyRevenue">₱0.00</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>This Month</p>
+                    <h2 id="monthlyRevenue">₱0.00</h2>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>Revenue Summary</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTable"></tbody>
+                </table>
+
+                <button onclick="window.print()">Print Report</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+Displaying index.html.

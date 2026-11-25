@@ -1,0 +1,89 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "passwordHash": "f5e8654a0c1e8d1bbec2614d7ff26ebcdec10d7847007917b5fb08558737ebcea1b669bd5533b5391f28353c28a3192e6f1a475e2e10acb4daeb2f37cc0f4514"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Rice 5kg",
+      "category": "Grocery",
+      "price": 280,
+      "stock": 48
+    },
+    {
+      "id": 2,
+      "name": "Cooking Oil",
+      "category": "Grocery",
+      "price": 120,
+      "stock": 40
+    },
+    {
+      "id": 3,
+      "name": "Soft Drinks",
+      "category": "Beverages",
+      "price": 45,
+      "stock": 57
+    },
+    {
+      "id": 4,
+      "name": "Laundry Soap",
+      "category": "Household",
+      "price": 35,
+      "stock": 30
+    },
+    {
+      "id": 5,
+      "name": "Instant Noodles",
+      "category": "Grocery",
+      "price": 18,
+      "stock": 100
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "transaction_code": "BS-0000001",
+      "sale_date": "2026-11-25T10:28:44.370Z",
+      "customer": "John Doe",
+      "productId": 1,
+      "product_name": "Rice 5kg",
+      "category": "Grocery",
+      "quantity": 2,
+      "unit_price": 280,
+      "total": 560,
+      "payment": "Cash"
+    },
+    {
+      "id": 2,
+      "transaction_code": "BS-0000002",
+      "sale_date": "2026-11-25T10:30:27.786Z",
+      "customer": "Juan Dela Cruz",
+      "productId": 3,
+      "product_name": "Soft Drinks",
+      "category": "Beverages",
+      "quantity": 2,
+      "unit_price": 45,
+      "total": 90,
+      "payment": "GCash"
+    },
+    {
+      "id": 3,
+      "transaction_code": "BS-0000003",
+      "sale_date": "2026-11-25T10:30:41.066Z",
+      "customer": "Luke Skywalker",
+      "productId": 3,
+      "product_name": "Soft Drinks",
+      "category": "Beverages",
+      "quantity": 1,
+      "unit_price": 45,
+      "total": 45,
+      "payment": "Cash"
+    }
+  ],
+  "nextProductId": 7,
+  "nextSaleId": 4
+}

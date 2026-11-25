@@ -1,0 +1,9 @@
+{
+  "name": "bizsight-nodejs-only",
+  "version": "1.0.0",
+  "description": "BizSight backend using only built-in Node.js modules",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
