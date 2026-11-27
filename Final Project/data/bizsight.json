@@ -19,7 +19,7 @@
       "name": "Cooking Oil",
       "category": "Grocery",
       "price": 120,
-      "stock": 40
+      "stock": 39
     },
     {
       "id": 3,
@@ -33,7 +33,7 @@
       "name": "Laundry Soap",
       "category": "Household",
       "price": 35,
-      "stock": 30
+      "stock": 28
     },
     {
       "id": 5,
@@ -82,8 +82,34 @@
       "unit_price": 45,
       "total": 45,
       "payment": "Cash"
+    },
+    {
+      "id": 4,
+      "transaction_code": "BS-0000004",
+      "sale_date": "2026-11-27T01:28:32.774Z",
+      "customer": "Han Solo",
+      "productId": 2,
+      "product_name": "Cooking Oil",
+      "category": "Grocery",
+      "quantity": 1,
+      "unit_price": 120,
+      "total": 120,
+      "payment": "Credit Card"
+    },
+    {
+      "id": 5,
+      "transaction_code": "BS-0000005",
+      "sale_date": "2026-11-27T01:29:49.621Z",
+      "customer": "Sheldon Cooper",
+      "productId": 4,
+      "product_name": "Laundry Soap",
+      "category": "Household",
+      "quantity": 2,
+      "unit_price": 35,
+      "total": 70,
+      "payment": "Cash"
     }
   ],
   "nextProductId": 7,
-  "nextSaleId": 4
+  "nextSaleId": 6
 }
