@@ -264,18 +264,26 @@ function renderBestSelling(data) {
 
 function renderCharts(data) {
     const daily = {};
+    const dayTime = {};
+
     data.forEach(s => {
-        const date = new Date(s.sale_date).toLocaleDateString();
+        const d = new Date(s.sale_date);
+        const date = d.toLocaleDateString();
         daily[date] = (daily[date] || 0) + s.total;
+        dayTime[date] = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
     });
+
+    const sortedDates = Object.keys(daily).sort((a, b) => dayTime[a] - dayTime[b]);
+    const sortedTotals = sortedDates.map(date => daily[date]);
+
     if (salesChart) salesChart.destroy();
     salesChart = new Chart(document.getElementById("salesChart"), {
         type: "line",
         data: {
-            labels: Object.keys(daily),
+            labels: sortedDates,
             datasets: [{
                 label: "Sales Revenue",
-                data: Object.values(daily),
+                data: sortedTotals,
                 borderColor: "#2563eb",
                 backgroundColor: "rgba(37,99,235,0.15)",
                 fill: true,
