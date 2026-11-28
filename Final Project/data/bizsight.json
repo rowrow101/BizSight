@@ -12,7 +12,7 @@
       "name": "Rice 5kg",
       "category": "Grocery",
       "price": 280,
-      "stock": 48
+      "stock": 47
     },
     {
       "id": 2,
@@ -26,7 +26,7 @@
       "name": "Soft Drinks",
       "category": "Beverages",
       "price": 45,
-      "stock": 57
+      "stock": 55
     },
     {
       "id": 4,
@@ -40,7 +40,7 @@
       "name": "Instant Noodles",
       "category": "Grocery",
       "price": 18,
-      "stock": 100
+      "stock": 97
     }
   ],
   "sales": [
@@ -108,8 +108,47 @@
       "unit_price": 35,
       "total": 70,
       "payment": "Cash"
+    },
+    {
+      "id": 6,
+      "transaction_code": "BS-0000006",
+      "sale_date": "2026-11-28T15:13:00.163Z",
+      "customer": "Wolfgang Mozart",
+      "productId": 3,
+      "product_name": "Soft Drinks",
+      "category": "Beverages",
+      "quantity": 2,
+      "unit_price": 45,
+      "total": 90,
+      "payment": "Bank Transfer"
+    },
+    {
+      "id": 7,
+      "transaction_code": "BS-0000007",
+      "sale_date": "2026-11-28T15:13:27.459Z",
+      "customer": "Bobba Fett",
+      "productId": 5,
+      "product_name": "Instant Noodles",
+      "category": "Grocery",
+      "quantity": 3,
+      "unit_price": 18,
+      "total": 54,
+      "payment": "Cash"
+    },
+    {
+      "id": 8,
+      "transaction_code": "BS-0000008",
+      "sale_date": "2026-11-28T15:13:48.946Z",
+      "customer": "Jango Fett",
+      "productId": 1,
+      "product_name": "Rice 5kg",
+      "category": "Grocery",
+      "quantity": 1,
+      "unit_price": 280,
+      "total": 280,
+      "payment": "Cash"
     }
   ],
   "nextProductId": 7,
-  "nextSaleId": 6
+  "nextSaleId": 9
 }
